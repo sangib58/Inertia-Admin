@@ -284,9 +284,9 @@ class UserController extends Controller
                 'imagePath'=>$fileName,
                 'addedBy'=>Auth::user()->userId
             ]);
-            return redirect()->route('user.ShowUserList')->with('success', 'User added successfully.');
+            return redirect()->route('user.show-users')->with('success', 'User added successfully.');
         }
-        return redirect()->route('user.ShowUserList')->with('error', 'Some error occurred.');
+        return redirect()->route('user.show-users')->with('error', 'Some error occurred.');
     }
 
     public function UpdateUser():RedirectResponse

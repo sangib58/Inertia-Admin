@@ -14,32 +14,6 @@
                 </div>
                 <div class="mt-4 px-3">
                     <ul class="space-y-1">
-                        <!-- <li v-for="(item, index) in menu" :key="index">
-                            <Link :href=item.route @click.prevent="item.route == '' && $event.stopPropagation()"
-                                class="parent cursor-pointer flex items-center px-3 py-3.5 text-gray-300 hover:rounded-lg hover:bg-semi-black hover:text-white"
-                                :class="{
-                                    'parent-active': usePage().url === item.route,
-                                }" @click.stop="toggleItem(index)">
-                            <span>
-                                <Icon :icon-name="item.icon" size="20" color="#ffffff" />
-                            </span>
-                            <span class="ml-2 text-sm">{{ item.title }}</span>
-                            <span class="ml-auto" v-if="item.childItems.length > 0">
-                                <Icon v-if="index === expandedIndex" icon-name="mdiArrowDown" size="18"
-                                    color="#ffffff" />
-                                <Icon v-else icon-name="mdiArrowRight" size="18" color="#ffffff" />
-                            </span>
-                            </Link>
-                            <ul v-if="item.childItems.length > 0" :class="{
-                                'child-menu': true,
-                                'child-menu-expanded': index === expandedIndex,
-                            }">
-                                <li v-for="(child, cIndex) in item.childItems" :key="cIndex" class="ml-6 mt-3">
-                                    <Link :href="child.route" class="child text-gray-300 before:mr-4"><span
-                                        class="text-sm">{{ child.title }}</span></Link>
-                                </li>
-                            </ul>
-                        </li> -->
                         <li v-for="(item, index) in menu" :key="index">
                             <template v-if="item.route">
                                 <Link :href="item.route" @click.stop="toggleItem(index)"
@@ -79,7 +53,11 @@
                             }">
                                 <li v-for="(child, cIndex) in item.childItems" :key="cIndex" class="ml-6 mt-3">
                                     <Link :href="child.route" class="child text-gray-300 before:mr-4">
-                                    <span class="text-sm">{{ child.title }}</span>
+                                    <span class="text-sm" 
+                                    :class="{
+                                        'text-blue-600':usePage().url === child.route,
+                                        'hover:text-blue-600': usePage().url !== child.route,
+                                    }">{{ child.title }}</span>
                                     </Link>
                                 </li>
                             </ul>
