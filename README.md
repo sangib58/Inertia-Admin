@@ -28,4 +28,5 @@ Then on console of root directory of the project run below commands,
 -   npm install
 -   php artisan app:migrate-with-database
 -   npm run dev
+-   composer install
 -   php artisan serve
