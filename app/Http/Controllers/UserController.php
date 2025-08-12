@@ -150,7 +150,8 @@ class UserController extends Controller
         
         return Inertia::render('dashboard',
             [
-                'userStatus'=>$userStatus,
+                //'userStatus'=>$userStatus,
+                'userStatus'=>Inertia::defer(fn()=>$userStatus),
                 'logHistoryByDate'=>$logHistoryByDate,
                 'logHistoryByMonth'=>$logHistoryByMonth,
                 'logHistoryByYear'=>$logHistoryByYear,
