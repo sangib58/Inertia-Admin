@@ -1,58 +1,87 @@
 <template>
     <div class="space-y-24 px-4 py-6">
-        <Deferred data="userStatus" v-slot="{ data: status }">
-            <template v-if="status">
-                <div class="grid grid-cols-1 gap-y-2 md:grid-cols-4 md:gap-x-4">
-                    <div
-                        class="status flex min-h-28 flex-col justify-center space-y-2 rounded-md bg-semi-black pl-4 text-white">
-                        <Icon icon-name="mdiAccount" size="26" color="#ffffff" />
-                        <div class="flex">
-                            <span class="pr-2 font-inter text-base">Total</span><span>{{ userStatus?.totalUser }}</span>
-                        </div>
-                    </div>
-                    <div
-                        class="status flex min-h-28 flex-col justify-center space-y-2 rounded-md bg-semi-black pl-4 text-white">
-                        <Icon icon-name="mdiAccountCheck" size="26" color="#ffffff" />
-                        <div class="flex">
-                            <span class="pr-2 font-inter text-base">Active</span><span>{{ userStatus?.activeUser }}</span>
-                        </div>
-                    </div>
-                    <div
-                        class="status flex min-h-28 flex-col justify-center space-y-2 rounded-md bg-semi-black pl-4 text-white">
-                        <Icon icon-name="mdiAccountCancel" size="26" color="#ffffff" />
-                        <div class="flex">
-                            <span class="pr-2 font-inter text-base">In Active</span><span>{{ userStatus?.inActiveUser }}</span>
-                        </div>
-                    </div>
-                    <div
-                        class="status flex min-h-28 flex-col justify-center space-y-2 rounded-md bg-semi-black pl-4 text-white">
-                        <Icon icon-name="mdiShieldCrown" size="26" color="#ffffff" />
-                        <div class="flex">
-                            <span class="pr-2 font-inter text-base">Admin</span><span>{{ userStatus?.adminUser }}</span>
-                        </div>
-                    </div>
+        <div class="grid grid-cols-1 gap-y-2 md:grid-cols-4 md:gap-x-4">
+            <div
+                class="status flex min-h-28 flex-col justify-center space-y-2 rounded-md bg-semi-black pl-4 text-white">
+                <Icon icon-name="mdiAccount" size="26" color="#ffffff" />
+                <div class="flex">
+                    <span class="pr-2 font-inter text-base">Total</span><span>{{ userStatus?.totalUser }}</span>
                 </div>
-            </template>
-            
-        </Deferred>
-        
+            </div>
+            <div
+                class="status flex min-h-28 flex-col justify-center space-y-2 rounded-md bg-semi-black pl-4 text-white">
+                <Icon icon-name="mdiAccountCheck" size="26" color="#ffffff" />
+                <div class="flex">
+                    <span class="pr-2 font-inter text-base">Active</span><span>{{ userStatus?.activeUser }}</span>
+                </div>
+            </div>
+            <div
+                class="status flex min-h-28 flex-col justify-center space-y-2 rounded-md bg-semi-black pl-4 text-white">
+                <Icon icon-name="mdiAccountCancel" size="26" color="#ffffff" />
+                <div class="flex">
+                    <span class="pr-2 font-inter text-base">In Active</span><span>{{ userStatus?.inActiveUser }}</span>
+                </div>
+            </div>
+            <div
+                class="status flex min-h-28 flex-col justify-center space-y-2 rounded-md bg-semi-black pl-4 text-white">
+                <Icon icon-name="mdiShieldCrown" size="26" color="#ffffff" />
+                <div class="flex">
+                    <span class="pr-2 font-inter text-base">Admin</span><span>{{ userStatus?.adminUser }}</span>
+                </div>
+            </div>
+        </div>
         <div class="grid grid-cols-1">
-            <DateChart :graphData="logHistoryByDate" />
+            <WhenVisible data="logHistoryByDate">
+                <template #fallback>
+                    <div class="flex items-center justify-center h-64">
+                        <span class="text-gray-500">Loading...</span>
+                    </div>
+                </template>                  
+                <DateChart :graphData="logHistoryByDate" />              
+            </WhenVisible>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-2">
             <div>
-                <MonthChart :graphData="logHistoryByMonth" />
+                <WhenVisible data="logHistoryByMonth">
+                    <template #fallback>
+                        <div class="flex items-center justify-center h-64">
+                            <span class="text-gray-500">Loading...</span>
+                        </div>
+                    </template>                  
+                    <MonthChart :graphData="logHistoryByMonth" />              
+                </WhenVisible>              
             </div>
             <div>
-                <YearChart :graphData="logHistoryByYear" />
+                <WhenVisible data="logHistoryByYear">
+                    <template #fallback>
+                        <div class="flex items-center justify-center h-64">
+                            <span class="text-gray-500">Loading...</span>
+                        </div>
+                    </template>                  
+                    <YearChart :graphData="logHistoryByYear" />             
+                </WhenVisible>               
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-2">
             <div>
-                <RoleChart :graphData="roleWiseUser" />
+                <WhenVisible data="roleWiseUser">
+                    <template #fallback>
+                        <div class="flex items-center justify-center h-64">
+                            <span class="text-gray-500">Loading...</span>
+                        </div>
+                    </template>                  
+                    <RoleChart :graphData="roleWiseUser" />            
+                </WhenVisible>                
             </div>
             <div>
-                <BrowserChart :graphData="logHistoryByBrowser" />
+                <WhenVisible data="logHistoryByBrowser">
+                    <template #fallback>
+                        <div class="flex items-center justify-center h-64">
+                            <span class="text-gray-500">Loading...</span>
+                        </div>
+                    </template>                  
+                    <BrowserChart :graphData="logHistoryByBrowser" />            
+                </WhenVisible>
             </div>
         </div>
     </div>

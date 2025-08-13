@@ -50,7 +50,7 @@ onMounted(() => {
         labels: props.graphData.map((x) => x.date.slice(0, 10)),
         datasets: [
             {
-                label: "Login(Date Wise)",
+                   label: "Login(Date Wise)",
                 backgroundColor: "#212121", // Set the fill color with transparency
                 borderColor: "#212121", // Set the line color
                 data: props.graphData.map((x) => x.count),

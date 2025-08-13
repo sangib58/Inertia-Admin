@@ -150,19 +150,18 @@ class UserController extends Controller
         
         return Inertia::render('dashboard',
             [
-                //'userStatus'=>$userStatus,
-                'userStatus'=>Inertia::defer(fn()=>$userStatus),
-                'logHistoryByDate'=>$logHistoryByDate,
-                'logHistoryByMonth'=>$logHistoryByMonth,
-                'logHistoryByYear'=>$logHistoryByYear,
-                'logHistoryByBrowser'=>$logHistoryByBrowser,
-                'roleWiseUser'=>$roleWiseUser,               
+                'userStatus'=>$userStatus,
+                'logHistoryByDate'=>Inertia::defer(fn()=>$logHistoryByDate),
+                'logHistoryByMonth'=>Inertia::defer(fn()=>$logHistoryByMonth),
+                'logHistoryByYear'=>Inertia::defer(fn()=>$logHistoryByYear),
+                'logHistoryByBrowser'=>Inertia::defer(fn()=>$logHistoryByBrowser),
+                'roleWiseUser'=>Inertia::defer(fn()=>$roleWiseUser),                              
             ]
         );
     }
 
     public function ShowChangePassword()
-    {
+    {  
         return Inertia::render('user/changePassword');
     }
 
