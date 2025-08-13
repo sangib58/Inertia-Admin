@@ -25,32 +25,32 @@ ChartJS.register(
     Title,
     Tooltip,
     Legend,
-    Filler, // Register Filler
+    Filler // Register Filler
 );
 
 interface GraphItem {
     date: string;
-    count: number
+    count: number;
 }
 const loaded = ref(false);
-const chartData = ref<ChartData<'line'>>({
+const chartData = ref<ChartData<"line">>({
     labels: [],
     datasets: [],
 });
-const chartOptions = ref<ChartOptions<'line'>>({
+const chartOptions = ref<ChartOptions<"line">>({
     responsive: true,
     maintainAspectRatio: true,
 });
 const props = defineProps<{
-    graphData: GraphItem[]
-}>()
+    graphData: GraphItem[];
+}>();
 
 onMounted(() => {
     chartData.value = {
         labels: props.graphData.map((x) => x.date.slice(0, 10)),
         datasets: [
             {
-                   label: "Login(Date Wise)",
+                label: "Login(Date Wise)",
                 backgroundColor: "#212121", // Set the fill color with transparency
                 borderColor: "#212121", // Set the line color
                 data: props.graphData.map((x) => x.count),
@@ -60,5 +60,5 @@ onMounted(() => {
         ],
     };
     loaded.value = true;
-})
+});
 </script>
